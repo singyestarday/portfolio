@@ -1,0 +1,40 @@
+body { font-size:16pt; color:#999; margin: 5px; }
+.content { margin:10px; }
+.footer { text-align:right; font-size:10px; margin:10px; 
+    border-bottom:solid 1px #ccc; color:#ccc; }
+
+.sticky-top { background-color :rgba(128,128,128,0.5);}
+
+h1 { 
+    font-family:"Georgia"; 
+    font-size:60px;
+    font-weight:bold;
+    padding:12px;
+    color:white;
+}
+hr { 
+    margin: 25px 100px; 
+    border-top: 1px dashed #ddd; 
+}
+.content { margin:10px; }
+.menufont {
+    font-family:"Georgia"; 
+    font-size:20px;
+    padding:18px;
+    color:white;
+}
+.parent {
+    width: 100%;
+    display: flex;
+    }
+.child {
+    width: 100px;
+}
+.title{
+    font-family:"Georgia";
+    font-size:45px;
+    color: white;
+    text-align: center;
+    background-color: mediumturquoise;
+}
+

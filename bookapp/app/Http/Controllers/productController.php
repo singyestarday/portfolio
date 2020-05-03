@@ -26,48 +26,7 @@ class productController extends Controller
         $param = ['items'=>$item, 'user'=>$user];
 
         //return view('layouts.productMenu', ['items'=>$item]);
-        return view('layouts.productMenu', $param);
-    }
-
-    //PHP テンプレート表示
-    public function productMain($id=1)
-    {
-        //データベースからプロダクト情報取得
-        //id or name に応じたデータ取得 $id
-
-        //引数渡し
-        $data = [
-            'name'=>'QUAPIX',
-            'img1'=>'IMG_2882.jpg',
-            'img2'=>'IMG_4919.jpg',
-            'img3'=>'IMG_5542.jpg',
-            'overview'=>'写真測光の解析アプリケーション。社内運用から始まり、社外の要望に対応すべく販売を開始。
-            他照明メーカ、ハウスメーカ、研究機関など様々な業種での実績あり。',
-            'lang'=>'C++, Qt',
-            'lib'=>'jpeglib',
-            'env'=>'Visual Studio, Qt Designer',
-            'role'=>'    開発２名　ある程度の開発が完了してた段階で参加
-            バージョンアップによるオーバーホールの段階で画像処理をはじめとした内部処理の５割程度開発。
-            他、スクリプト機能、グレア算出などを担当。',
-        ];
-
-        return view('portfolio.product', ['data'=>$data]);
-    }
-
-    //SQLiteの利用
-    public function database(Request $request)
-    {
-        if (isset($request->id))
-        {
-            $param = ['id'=>$request->id];
-            //データ全部取得
-            $items = DB::select('select * from product where id = :id', 
-                $param);
-        } else {
-            $items = DB::select('select * from product');
-        }
-
-        return view('portfolio.data', ['items'=>$items]);
+        return view('portfolio.menu', $param);
     }
 
     //プロダクト情報の出力
@@ -91,6 +50,22 @@ class productController extends Controller
         }
 
         return view('portfolio.product', ['data'=>$data]);
+    }
+
+    //SQLiteの利用
+    public function database(Request $request)
+    {
+        if (isset($request->id))
+        {
+            $param = ['id'=>$request->id];
+            //データ全部取得
+            $items = DB::select('select * from product where id = :id', 
+                $param);
+        } else {
+            $items = DB::select('select * from product');
+        }
+
+        return view('portfolio.data', ['items'=>$items]);
     }
 
     //SQLiteデータ追加
@@ -120,21 +95,5 @@ class productController extends Controller
 
         return redirect('/testSQLite');
     }
-
-    /*
-    public function create(Request $request)
-    {
-        $param = [
-            'name' => $request->name,
-            'mail' => $request->mail,
-            'age'  => $request->age,
-        ];
-
-        DB::insert('insert into people (name, mail, age) values 
-            (:name, :mail, :age)', $param);
-
-        return redirect('/testSQLite');
-    }
-    */
 
 }

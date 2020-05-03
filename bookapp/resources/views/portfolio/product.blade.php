@@ -1,18 +1,45 @@
-@extends('layouts.productbase')
+@extends('layouts.baselayout')
 
 @section('title')
     {{$data[0]->name}}
 @endsection
 
-@section('slider')
-<ul class="bxslider">
-    <li><img src=/storage/product/{{$data[0]->img1}}></li>
-    <li><img src=/storage/product/{{$data[0]->img2}}></li>
-    <li><img src=/storage/product/{{$data[0]->img3}}></li>
-</ul>
+@section('title-tile')
+    {{$data[0]->name}}
 @endsection
 
-@section('overview')
+@section('slideshow')
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" style="margin-bottom:25px;">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <!-- スライドさせる画像の設定 -->
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="3000">
+            <img class="d-block w-100" src=/storage/product/{{$data[0]->img1}} alt="第1スライド">
+        </div><!-- /.carousel-item -->
+        <div class="carousel-item" data-interval="3000">
+            <img class="d-block w-100" src=/storage/product/{{$data[0]->img2}} alt="第2スライド">
+        </div><!-- /.carousel-item -->
+        <div class="carousel-item" data-interval="3000">
+            <img class="d-block w-100" src=/storage/product/{{$data[0]->img3}} alt="第3スライド">
+        </div><!-- /.carousel-item -->
+    </div><!-- /.carousel-inner -->
+    <!-- スライドコントロールの設定 -->
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">前へ</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">次へ</span>
+  </a>
+</div><!-- /.carousel -->
+@endsection
+
+@section('maincontents')
     @component('components.message')
         @slot('msg_title')
             概要
@@ -21,9 +48,7 @@
             {{$data[0]->overview}}
         @endslot
     @endcomponent
-@endsection
 
-@section('dev')
     @component('components.message')
         @slot('msg_title')
         開発
@@ -36,9 +61,7 @@
         開発環境：{{$data[0]->env}}<br>
         @endslot
     @endcomponent
-@endsection
 
-@section('role')
     @component('components.message')
         @slot('msg_title')
         役割
